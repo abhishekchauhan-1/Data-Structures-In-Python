@@ -36,6 +36,36 @@ class LinkedList:
         new_node.next = slow
         return head
 
+    def delete_at_mid(self,head):
+        if head is None and head.next is None:
+            return None
+        slow = head
+        fast = head
+        prev = None
+        while fast is not None and fast.next is not None:
+            prev = slow
+            slow = slow.next
+            fast = fast.next.next
+
+        if prev is not None:
+            prev.next = slow.next
+
+        return head
+
+    def delete_at_first(self,head):
+        if head is not None:
+            head = head.next
+            return head
+
+    def delete_at_last(self,head):
+        if head is None and head.next is None:
+            return None
+        current = head
+        while current.next.next is not None:
+            current = current.next
+        current.next = None
+        return head
+
 
     def print(self,head):
         current = head
@@ -48,8 +78,9 @@ head = None
 head = linked_list.insert_at_first(head,10)
 head = linked_list.insert_at_first(head,20)
 head = linked_list.insert_at_first(head,30)
-
 head = linked_list.insert_at_last(head,40)
 head = linked_list.insert_at_mid(head,15)
-
+head = linked_list.delete_at_first(head)
+head = linked_list.delete_at_mid(head)
+head = linked_list.delete_at_last(head)
 linked_list.print(head)
